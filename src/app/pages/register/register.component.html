@@ -1,0 +1,64 @@
+<div class="form-auth-container">
+  <form class="form-center">
+    <div class="mb-4">
+      <h2>S'inscrire</h2>
+      <hr />
+    </div>
+    <ul *ngIf="errors.length > 0" class="text-danger">
+      <li *ngFor="let error of errors">{{ error }}</li>
+    </ul>
+    <div class="alert alert-success" *ngIf="userCreated === true">
+      <p class="mb-0">
+        Utilisateur créé! Veuillez <a routerLink="/login">vous connecter</a>
+      </p>
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        name="matricule"
+        id="matricule"
+        class="form-control"
+        placeholder="Matricule"
+        [(ngModel)]="matricule"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        name="mdp"
+        id="mdp"
+        class="form-control"
+        placeholder="Mot de passe"
+        [(ngModel)]="mdp"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        name="mdpConfirmation"
+        id="mdpConfirmation"
+        class="form-control"
+        placeholder="Confirmez le mot de passe"
+        [(ngModel)]="mdpConfirmation"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <select
+        [(ngModel)]="typeUtilisateur"
+        name="typeUtilisateur"
+        id="typeUtilisateur"
+        class="form-select"
+      >
+        <option value="ROLE_FORMATEUR">Formateur</option>
+        <option value="ROLE_SURVEILLANT">Surveillant</option>
+      </select>
+    </div>
+    <button (click)="register()" type="submit" class="btn btn-primary">
+      Enregistrer
+    </button>
+    <a routerLink="/connexion" class="text-center my-1">Se connecter</a>
+  </form>
+</div>

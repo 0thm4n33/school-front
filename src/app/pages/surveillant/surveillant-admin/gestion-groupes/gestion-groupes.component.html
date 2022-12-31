@@ -1,0 +1,47 @@
+<h4>Gestion des groupes</h4>
+<hr />
+<span class="text-danger">{{error}}</span>
+<div class="row mb-4">
+    <div class="col-md-4">
+      <div class="form-group d-flex align-items-center gap-2">
+        <label for="intitule" class="form-label">Intitulé</label>
+        <input type="text" class="form-control" [(ngModel)]="intitule">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group d-flex align-items-center gap-2">
+        <label for="filiere" class="form-label">Filière</label>
+        <select name="filiere" id="filiere" class="form-select" [(ngModel)]="filiereId">
+          <option *ngFor="let filiere of filieres" value="{{filiere.id}}" selected>{{filiere.normalizedIntitule}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-2">
+        <button class="btn btn-primary" (click)="createGroupe()">Enregistrer</button>
+      </div>
+  </div>
+
+<div class="row">
+  <div class="col">
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Intitulé</th>
+          <th>Filière</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let groupe of groupes">
+          <td>{{groupe.id}}</td>
+          <td>{{groupe.normalizedIntitule}}</td>
+          <td>{{groupe.filiereIntitule}}</td>
+          <td class="d-flex gap-2 justify-content-center align-items-center">
+            <button id="g-{{groupe.id}}" class="btn btn-sm btn-outline-danger" (click)="deleteGroupe($event)">Supprimer</button>
+            <button id="g-{{groupe.id}}" class="btn btn-sm btn-dark" (click)="modifyGroupe($event)">Modifier</button>
+          </td>
+        </tr>
+    </table>
+  </div>
+</div>

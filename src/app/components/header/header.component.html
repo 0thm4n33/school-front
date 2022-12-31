@@ -1,0 +1,80 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white box-shadow">
+    <div class="container">
+      <img
+        src="https://www.ofppt.ma/themes/custom/ofppt/assets/images/logo.png"
+        alt="Logo OFPPT"
+        width="64"
+      />
+      <a class="navbar-brand mx-2" href="#"
+        >Plateforme de gestion des absences</a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse d-flex justify-content-end"
+        id="navbarNavAltMarkup"
+      >
+        <div class="navbar-nav" *ngIf="isAuthPage === true">
+          <a class="nav-link" routerLink="/connexion">Connexion</a>
+        </div>
+        <div class="navbar-nav" *ngIf="isAuthPage === false">
+          <a
+            class="nav-link"
+            routerLink="/feuille-absence"
+            *ngIf="isFormateur === true"
+            >Feuille d'absence</a
+          >
+          <a
+            class="nav-link"
+            routerLink="/surveillant"
+            *ngIf="isSurveillant === true"
+            >Accueil</a
+          >
+          <a
+            class="nav-link"
+            routerLink="/surveillant-admin/gestion-niveaux"
+            *ngIf="isSurveillant === true"
+            >Administration</a
+          >
+          <a
+            class="nav-link"
+            routerLink="/billets"
+            *ngIf="isFormateur === true"
+            >Billets d'absence <span *ngIf="billetsCount > 0" class="badge rounded-pill bg-danger">
+              {{billetsCount}}+
+              <span class="visually-hidden">unread messages</span>
+            </span></a
+          >
+          <li class="nav-item dropdown" *ngIf="displayUserNav">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {{ matricule }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" routerLink="/profil">Profil</a></li>
+              <li (click)="logout()">
+                <a class="dropdown-item text-danger" href="#">Déconnexion</a>
+              </li>
+            </ul>
+          </li>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

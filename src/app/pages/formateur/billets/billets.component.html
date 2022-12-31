@@ -1,0 +1,38 @@
+<app-breadcrumbs espace="formateur" page="billets d'absence"></app-breadcrumbs>
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-header fw-bold">Billets d'absence - <span class="badge rounded-pill bg-dark">{{ today }}</span></div>
+      <div class="card-body pt-4">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Etudiant</th>
+                    <th>Filière</th>
+                    <th>Groupe</th>
+                    <th>Surveillant</th>
+                    <th>Heure</th>
+                    <th>Motif</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let billet of billets">
+                    <td>{{billet.id}}</td>
+                    <td>{{billet.etudiant}}</td>
+                    <td>{{billet.filiere}}</td>
+                    <td>{{billet.groupe}}</td>
+                    <td>{{billet.surveillant}}</td>
+                    <td>{{billet.heure}}:{{billet.minutes}}</td>
+                    <td>Retard</td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm" id="b-{{billet.id}}" (click)="validateBillet($event)">Valider</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

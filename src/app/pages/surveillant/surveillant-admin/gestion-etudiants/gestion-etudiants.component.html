@@ -1,0 +1,135 @@
+<div class="d-flex justify-content-between align-items-center">
+    <h4 class="pb-0 mb-0">Gestion des étudiants <span *ngIf="modifyMode == true">- Modifier</span></h4>
+    <button *ngIf="!isAddMode" class="btn btn-outline-primary" (click)="triggerAddEtudiant()">Ajouter</button>
+    <button *ngIf="isAddMode" class="btn btn-outline-dark" (click)="annuler()">Annuler</button>
+</div>
+<hr>
+<div class="alert alert-danger alert-dismissible fade show  d-flex align-items-center" *ngIf="validationErrors.length > 0">
+    <ul class="mb-0">
+        <li *ngFor="let err of validationErrors">{{err}}</li>
+    </ul>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div *ngIf="isAddMode" class="d-flex gap-2 flex-column">
+    <div class="row">
+        <div class="col">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" class="form-control" [(ngModel)]="etudiant.nom">
+        </div>
+        <div class="col">
+            <label for="prenom" class="form-label">Prénom</label>
+            <input type="text" class="form-control" [(ngModel)]="etudiant.prenom">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="cin" class="form-label">CIN</label>
+            <input type="text" class="form-control" [(ngModel)]="etudiant.cin">
+        </div>
+        <div class="col">
+            <label for="code" class="form-label">Code</label>
+            <input type="text" class="form-control" [(ngModel)]="etudiant.code">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="dateNaissance" class="form-label">Date de naissance</label>
+            <input type="date" class="form-control">
+        </div>
+        <div class="col">
+            <label for="adresse" class="form-label">Adresse</label>
+            <input type="text" class="form-control" [(ngModel)]="etudiant.adresse">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="tel" class="form-label">Tel</label>
+            <input type="text" class="form-control" [(ngModel)]="etudiant.tel">
+        </div>
+        <div class="col">
+            <label for="prenom" class="form-label">Photo</label>
+            <input type="file" class="form-control" [(ngModel)]="etudiant.photo">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="niveau" class="form-label">Niveau</label>
+                <select
+                  (change)="loadFilieres()"
+                  name="niveau"
+                  id="niveau"
+                  class="form-select"
+                  [(ngModel)]="selectedNiveau"
+                >
+                  <option value="{{ niveau.id }}" *ngFor="let niveau of niveaux">
+                    {{ niveau.normalizedIntitule }}
+                  </option>
+                </select>
+              </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="filiere" class="form-label">Filière</label>
+                <select
+                  name="filiere"
+                  id="filiere"
+                  class="form-select"
+                  [(ngModel)]="selectedFiliere"
+                >
+                  <option value="{{ filiere.id }}" *ngFor="let filiere of filieres">
+                    {{ filiere.normalizedIntitule }}
+                  </option>
+                </select>
+              </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="groupe" class="form-label">Groupe</label>
+                <select
+                  name="groupe"
+                  id="groupe"
+                  class="form-select"
+                  [(ngModel)]="selectedGroupe"
+                >
+                  <option value="{{ groupe.id }}" *ngFor="let groupe of groupes">
+                    {{ groupe.normalizedIntitule }}
+                  </option>
+                </select>
+              </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary" (click)="createEtudiant()">Enregistrer</button>
+        </div>
+    </div>
+</div>
+<table *ngIf="isAddMode == false" class="table text-center mt-4">
+<thead>
+    <tr>
+        <th>Id</th>
+        <th>Code</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>CIN</th>
+        <th>Actions</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let etudiant of etudiants">
+        <td>{{etudiant.id}}</td>
+        <td>{{etudiant.code}}</td>
+        <td>{{etudiant.nom}}</td>
+        <td>{{etudiant.prenom}}</td>
+        <td>{{etudiant.cin}}</td>
+        <td class="d-flex justify-content-center align-items-center gap-2">
+            <button class="btn btn-sm btn-outline-danger" id="e-{{etudiant.id}}" (click)="deleteEtudiant($event)">Supprimer</button>
+            <button class="btn btn-sm btn-dark" id="e-{{etudiant.id}}" (click)="modifyEtudiant($event)">Modifier</button>
+            <button class="btn btn-sm btn-primary" id="e-{{etudiant.id}}" (click)="displayEtudiant($event)">Afficher</button>
+        </td>
+    </tr>
+</tbody>
+</table>

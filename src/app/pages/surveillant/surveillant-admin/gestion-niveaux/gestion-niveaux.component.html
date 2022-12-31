@@ -1,0 +1,36 @@
+<h4>Gestion des niveaux</h4>
+<hr />
+<span class="text-danger">{{error}}</span>
+<div class="row mb-4">
+  <div class="col">
+    <div class="form-group d-flex align-items-center gap-2">
+      <label for="intitule" class="form-label">Intitulé</label>
+      <input type="text" class="form-control" [(ngModel)]="intitule">
+    </div>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-primary" (click)="createNiveau()">Enregistrer</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Intitulé</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let niveau of niveaux">
+          <td>{{niveau.id}}</td>
+          <td>{{niveau.normalizedIntitule}}</td>
+          <td class="d-flex gap-2 justify-content-center align-items-center">
+            <button id="n-{{niveau.id}}" class="btn btn-sm btn-outline-danger" (click)="deleteNiveau($event)">Supprimer</button>
+            <button id="n-{{niveau.id}}" class="btn btn-sm btn-dark" (click)="modifyNiveau($event)">Modifier</button>
+          </td>
+        </tr>
+    </table>
+  </div>
+</div>

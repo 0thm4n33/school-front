@@ -1,0 +1,50 @@
+<div class="form-auth-container banner">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-header fs-5">Authentification</div>
+      <div class="card-body">
+        <form class="form-center">
+          <div class="d-flex flex-column justify-content-center align-items-center">
+          </div>
+          <ul *ngIf="errors.length > 0" class="text-danger">
+            <li *ngFor="let error of errors">{{ error }}</li>
+          </ul>
+          <div class="form-group">
+            <label for="" class="form-label">Matricule</label>
+            <input
+              type="text"
+              name="matricule"
+              id="matricule"
+              class="form-control"
+              placeholder="Matricule"
+              [(ngModel)]="matricule"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="" class="form-label">Mot de passe</label>
+            <input
+              type="password"
+              name="mdp"
+              id="mdp"
+              class="form-control"
+              placeholder="Mot de passe"
+              [(ngModel)]="mdp"
+              required
+            />
+          </div>
+         <div class="form-group">
+          <label for="" class="form-label">Texte de sécurité</label>
+          <div class="d-flex gap-2">
+            <img src="/assets/captcha.png" alt="">
+            <input type="text" class="form-control">
+          </div>
+         </div>
+          <button (click)="login()" type="submit" class="btn btn-primary mt-2">
+            Se connecter
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

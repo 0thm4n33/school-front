@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-header fw-bold">Billet d'absence</div>
+      <div class="card-body p-4">
+        <div class="row justify-content-center">
+          <div class="col-md-5 col-xs-12">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="" class="form-label text-gray pb-0 mb-0">Nom</label>
+                  <hr class="py-0 my-0" />
+                  <p class="text-center fw-light text-uppercase">{{etudiant.nom}}</p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="" class="form-label text-gray pb-0 mb-0"
+                    >Prénom</label
+                  >
+                  <hr class="py-0 my-0" />
+                  <p class="text-center fw-light text-uppercase">{{etudiant.prenom}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="" class="form-label text-gray pb-0 mb-0"
+                    >Filière</label
+                  >
+                  <hr class="py-0 my-0" />
+                  <p class="text-center fw-light text-uppercase">{{filiere?.intitule}}</p>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="" class="form-label text-gray pb-0 mb-0"
+                    >Groupe</label
+                  >
+                  <hr class="py-0 my-0" />
+                  <p class="text-center fw-light text-uppercase">{{groupe?.intitule}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex gap-2 mt-0 flex-column">
+              <div class="form-group">
+                <label for="" class="form-label text-gray pb-0 mb-0">Surveillant</label>
+                <hr class="py-0 my-0" />
+                <p class="text-center fw-light text-uppercase">{{surveillant.nom + " " + surveillant.prenom}}</p>
+              </div>
+             <div class="row">
+              <div class="form-group col">
+                <label for="" class="form-label text-gray pb-2 mb-0">Date</label>
+                <input name="" id="" class="form-control" type="date" [(ngModel)]="billetAbsence.periode">
+              </div>
+              <div class="row col">
+                <div class="form-group col">
+                  <label for="" class="form-label text-gray pb-2 mb-0">Horaire</label>
+                  <div class="d-flex align-items-center gap-2">
+                    <input name="" id="" class="form-control" type="number" placeholder="Heure" [(ngModel)]="billetAbsence.heure">
+                    <input name="" id="" class="form-control" type="number" placeholder="Minutes" [(ngModel)]="billetAbsence.minutes">
+                  </div>
+                </div>
+              </div>
+             </div>
+              <div class="form-group">
+                <label for="" class="form-label text-gray pb-2 mb-0">Motif</label>
+                <select name="" id="motif" class="form-select">
+                  <option value="R">Retard</option>
+                  <option value="ABSENCE_JUSTIFIEE">Absence Justifiée</option>
+                  <option value="N">Non</option>
+                  <option value="CM">Certificat Medical</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="" class="form-label text-gray pb-2 mb-0">Formateur</label>
+                <select name="" id="formateur" class="form-select">
+                  <option value="{{formateur.id}}" *ngFor="let formateur of formateurs">{{formateur.nom + " " + formateur.prenom}}</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" (click)="createBilletAbsence()">Envoyer</button>
+              <button class="btn btn-outline-dark" (click)="close()">Annuler</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,168 @@
+<app-breadcrumbs espace="formateur" page="feuile d'absence"></app-breadcrumbs>
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-header fw-bold">Feuille d'absence</div>
+      <div class="card-body">
+        <div class="form-center mx-auto mb-4">
+          <div class="form-group">
+            <label for="niveau" class="form-label">Niveau</label>
+            <select
+              (change)="loadFilieres()"
+              name="niveau"
+              id="niveau"
+              class="form-select"
+              [(ngModel)]="selectedNiveau"
+            >
+              <option value="{{ niveau.id }}" *ngFor="let niveau of niveaux">
+                {{ niveau.normalizedIntitule }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="filiere" class="form-label">Filière</label>
+            <select
+              name="filiere"
+              id="filiere"
+              class="form-select"
+              [(ngModel)]="selectedFiliere"
+            >
+              <option value="{{ filiere.id }}" *ngFor="let filiere of filieres">
+                {{ filiere.normalizedIntitule }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="groupe" class="form-label">Groupe</label>
+            <select
+              name="groupe"
+              id="groupe"
+              class="form-select"
+              [(ngModel)]="selectedGroupe"
+            >
+              <option value="{{ groupe.id }}" *ngFor="let groupe of groupes">
+                {{ groupe.normalizedIntitule }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="periode" class="form-label">Période</label>
+            <input
+              type="date"
+              name="periode"
+              id="periode"
+              class="form-control"
+              [(ngModel)]="periode"
+            />
+          </div>
+          <button
+            class="btn btn-outline-primary align-self-start"
+            style="width: fit-content"
+            (click)="loadEtudiantsInGroupe()"
+          >
+            Récupérer
+          </button>
+        </div>
+        <div *ngIf="etudiants.length > 0">
+          <table class="table mt-4 table-sm text-center table-bordered">
+            <thead style="background-color: whitesmoke">
+              <tr>
+                <th rowspan="2">N</th>
+                <th rowspan="2">Nom et Prénom</th>
+                <th colspan="4">
+                  <input
+                    type="date"
+                    name="tableDate"
+                    id="tableDate"
+                    class="p-1 border rounded text-center"
+                    (change)="loadEtudiantsInGroupe()"
+                    [(ngModel)]="periode"
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>08-10</th>
+                <th>10-13</th>
+                <th>13-16</th>
+                <th>16-18</th>
+              </tr>
+            </thead>
+            <tbody id="etudiants" class="text-center">
+              <tr *ngFor="let etudiant of etudiants" class="">
+                <td>{{ etudiant.id }}</td>
+                <td>{{ etudiant.nom + " " + etudiant.prenom | uppercase }}</td>
+                <td>
+                  <select
+                    name="periode_1"
+                    id="periode_1"
+                    class="form-select py-0"
+                    [(ngModel)]="etudiant.absences[0].periode_1"
+                  >
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="-1">R</option>
+                  </select>
+                </td>
+                <td>
+                  <select
+                    name="periode_2"
+                    id="periode_2"
+                    class="form-select py-0"
+                    [(ngModel)]="etudiant.absences[0].periode_2"
+                  >
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="2">3</option>
+                    <option value="-1">R</option>
+                  </select>
+                </td>
+                <td>
+                  <select
+                    name="periode_3"
+                    id="periode_3"
+                    class="form-select py-0"
+                    [(ngModel)]="etudiant.absences[0].periode_3"
+                  >
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="2">3</option>
+                    <option value="-1">R</option>
+                  </select>
+                </td>
+                <td>
+                  <select
+                    name="periode_4"
+                    id="periode_4"
+                    class="form-select py-0"
+                    [(ngModel)]="etudiant.absences[0].periode_4"
+                  >
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="-1">R</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-end">
+            <button class="btn" (click)="reset()">Restaurer</button>
+            <button class="btn btn-primary" (click)="updateAbsencesEtudiants()">
+              Valider
+            </button>
+          </div>
+        </div>
+        <div
+          class="alert alert-warning text-center mb-0"
+          *ngIf="etudiants.length === 0"
+        >
+          Veuillez choisir le niveau, la filière et le groupe pour récupérer la
+          fiche d'absence appropriée
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
