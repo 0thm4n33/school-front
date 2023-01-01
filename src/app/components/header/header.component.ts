@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
       this.isAuthPage = false;
     }
 
-    if (userRole === 'ROLE_SURVEILLANT') {
+    if (userRole === 'ROLE_SURVEILLANT' || userRole === 'ROLE_ADMIN') {
       this.isSurveillant = true;
       this.isFormateur = false;
       this.espace = 'Surveillant';

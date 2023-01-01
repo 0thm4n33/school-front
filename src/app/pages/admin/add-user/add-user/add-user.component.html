@@ -1,0 +1,35 @@
+<app-breadcrumbs espace="admin" page="page administrateur "></app-breadcrumbs>
+<div class="container">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-header fw-bold">Administration</div>
+        <div class="card-body">
+            <form (ngSubmit)="onSubmit()">
+                <ul *ngIf="errors.length > 0" class="text-danger">
+                    <li *ngFor="let error of errors">{{ error }}</li>
+                  </ul>
+                <div class="row">
+                    <div class="col">
+                        <label for="matricule">Matricule</label>
+                        <input type="email" class="form-control"  name="matricule" [(ngModel)]="matricule" placeholder="Matricule">
+                      </div>
+                      <div class="col">
+                        <label for="mdp">Mot de passe</label>
+                        <input type="password" class="form-control" name="mdp" placeholder="Password" [(ngModel)]="mdp">
+                      </div>
+                </div>
+                <div class="form-group">
+                    <label for="Role">Choisir un role</label>
+                    <select name="typeUtilisateur" class="form-control" [(ngModel)]="typeUtilisateur">
+                        <option  *ngFor="let role of roles" [ngValue]="role">
+                            {{role}}
+                        </option>
+                    </select>
+                </div>
+               
+                <button style="margin-top: 8px;" type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>

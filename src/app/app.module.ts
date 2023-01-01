@@ -23,6 +23,8 @@ import { GestionFilieresComponent } from './pages/surveillant/surveillant-admin/
 import { GestionGroupesComponent } from './pages/surveillant/surveillant-admin/gestion-groupes/gestion-groupes.component';
 import { GestionEtudiantsComponent } from './pages/surveillant/surveillant-admin/gestion-etudiants/gestion-etudiants.component';
 import { BilletsComponent } from './pages/formateur/billets/billets.component';
+import { AddUserComponent } from './pages/admin/add-user/add-user/add-user.component';
+import { ListUsersComponent } from './pages/admin/list-users/list-users.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { BilletsComponent } from './pages/formateur/billets/billets.component';
     GestionFilieresComponent,
     GestionGroupesComponent,
     GestionEtudiantsComponent,
-    BilletsComponent
+    BilletsComponent,
+    AddUserComponent,
+    ListUsersComponent
   ],
   imports: [
     BrowserModule,

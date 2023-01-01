@@ -79,6 +79,10 @@ export class IndexComponent implements OnInit {
       ))))
   }
 
+  calculateWeek(){
+    
+  }
+
   getDay(day: number){
     const days = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
     return days[--day];

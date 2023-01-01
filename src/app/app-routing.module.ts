@@ -17,6 +17,8 @@ import { GestionFilieresComponent } from './pages/surveillant/surveillant-admin/
 import { GestionGroupesComponent } from './pages/surveillant/surveillant-admin/gestion-groupes/gestion-groupes.component';
 import { GestionEtudiantsComponent } from './pages/surveillant/surveillant-admin/gestion-etudiants/gestion-etudiants.component';
 import { BilletsComponent } from './pages/formateur/billets/billets.component';
+import { AddUserComponent } from './pages/admin/add-user/add-user/add-user.component';
+import { ListUsersComponent } from './pages/admin/list-users/list-users.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/connexion', pathMatch: 'full'},
@@ -68,6 +70,18 @@ const routes: Routes = [
     component: BilletsComponent,
     canActivate: [AuthRouteGuard],
     data: { role: 'ROLE_FORMATEUR'}
+  },
+  {
+    path:'admin',
+    component:AddUserComponent,
+    canActivate:[AuthRouteGuard],
+    data: {role: 'ROLE_ADMIN'}
+  },
+  {
+    path:'admin/list-users',
+    component:ListUsersComponent,
+    canActivate:[AuthRouteGuard],
+    data:{role:'ROLE_ADMIN'}
   },
   {
     path: '**',

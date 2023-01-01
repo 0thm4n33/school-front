@@ -34,6 +34,8 @@ export class LoginComponent implements OnInit {
         window.location.href = "/surveillant";
       } else if(role === "ROLE_FORMATEUR") {
         window.location.href = "/feuille-absence";
+      }else if(role === "ROLE_ADMIN"){
+        window.location.href = "/admin";
       }
     } else {
       this.errors.push("Informations de connexion invalides");
